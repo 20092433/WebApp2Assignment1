@@ -3,15 +3,14 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
+
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { getGenres } from "../../api/tmdb-api";
+
+
 import { useQuery } from "react-query";
 import Spinner from '../spinner';
+import { getFamousActors } from "../../api/tmdb-api";
 import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
 
 const formControl =
@@ -21,9 +20,9 @@ const formControl =
     backgroundColor: "rgb(255, 255, 255)"
 };
 
-export default function FilterMoviesCard(props) {
+export default function FilterActorsCard(props) {
 
-    const { data, error, isLoading, isError } = useQuery("genres", getGenres);
+    const { data, error, isLoading, isError } = useQuery("actors", getFamousActors);
 
   if (isLoading) {
     return <Spinner />;
@@ -32,10 +31,7 @@ export default function FilterMoviesCard(props) {
   if (isError) {
     return <h1>{error.message}</h1>;
   }
-  const genres = data.genres;
-  if (genres[0].name !== "All"){
-    genres.unshift({ id: "0", name: "All" });
-  }
+ 
 
   const handleChange = (e, type, value) => {
     e.preventDefault();
@@ -46,9 +42,7 @@ export default function FilterMoviesCard(props) {
     handleChange(e, "name", e.target.value);
   };
 
-  const handleGenreChange = (e) => {
-    handleChange(e, "genre", e.target.value);
-  };
+
 
   
 
@@ -62,7 +56,7 @@ export default function FilterMoviesCard(props) {
             <CardContent>
                 <Typography variant="h5" component="h1">
                     <SearchIcon fontSize="large" />
-                    Filter the movies.
+                    Filter an actor/actress by Name.
                 </Typography>
                 <TextField
                     sx={{ ...formControl }}
@@ -73,8 +67,8 @@ export default function FilterMoviesCard(props) {
                     value={props.titleFilter}
                     onChange={handleTextChange}
                 />
-                <FormControl sx={{ ...formControl }}>
-                    <InputLabel id="genre-label">Genre</InputLabel>
+                {/* <FormControl sx={{ ...formControl }}>
+                    <InputLabel id="genre-label">Name</InputLabel>
                     <Select
                         labelId="genre-label"
                         id="genre-select"
@@ -91,7 +85,7 @@ export default function FilterMoviesCard(props) {
                             );
                         })}
                     </Select>
-                </FormControl>
+                </FormControl> */}
             </CardContent>
             <CardMedia
                 sx={{ height: 300 }}
