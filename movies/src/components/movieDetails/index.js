@@ -24,6 +24,8 @@ const chip = { margin: 0.5 };
 const MovieDetails = ({ movie }) => {  // Don't miss this!
     const [drawerOpen, setDrawerOpen] = useState(false);
 
+    console.log(movie)
+
     return (
         <>
             <Typography variant="h5" component="h3">

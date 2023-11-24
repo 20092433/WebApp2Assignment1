@@ -9,6 +9,7 @@ import Spinner from '../components/spinner'
 
 
 const MoviePage = (props) => {
+  //allows compo.nent to extract the movie id from the browsers parameterized url address
   const { id } = useParams();
   const { data: movie, error, isLoading, isError } = useQuery(
     ["movie", { id: id }],
@@ -27,6 +28,7 @@ const MoviePage = (props) => {
     <>
       {movie ? (
         <>
+        //show template of one movie
           <PageTemplate movie={movie}>
             <MovieDetails movie={movie} />
           </PageTemplate>

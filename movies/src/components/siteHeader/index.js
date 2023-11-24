@@ -27,7 +27,8 @@ const SiteHeader = ({ history }) => {
     { label: "Home", path: "/" },
     { label: "Favorites", path: "/movies/favorites" },
     { label: "Upcoming", path: "/movies/upcoming" },
-    { label: "Popular", path: "/movies/popular" }
+    { label: "Popular", path: "/movies/popular" },
+    { label: "Famous Actors", path: "/actors/famous" },
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -46,7 +47,7 @@ const SiteHeader = ({ history }) => {
             TMDB Client
           </Typography>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Everything Movie & Show related!
+            Made for fans of film!
           </Typography>
             {isMobile ? (
               <>

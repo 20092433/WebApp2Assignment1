@@ -7,13 +7,10 @@ import { getMovieImages } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
 
-const TemplateMoviePage = ({ movie, children }) => {
-  //checks to see if images is cached and if it not creates a func call to the api to get the image
-  //if it shows up in the flower you know its cached
-
+const TemplateActorPage = ({ actor, children }) => {
     const { data , error, isLoading, isError } = useQuery(
-        ["images", { id: movie.id }],
-        getMovieImages
+        ["images", { id: actor.id }],
+        getActorImages
       );
     
       if (isLoading) {
@@ -27,7 +24,7 @@ const TemplateMoviePage = ({ movie, children }) => {
 
   return (
     <>
-      <MovieHeader movie={movie} />
+      <ActorHeader actor={actor} />
 
       <Grid container spacing={5} sx={{ padding: "15px" }}>
         <Grid item xs={3}>
@@ -58,4 +55,4 @@ const TemplateMoviePage = ({ movie, children }) => {
   );
 };
 
-export default TemplateMoviePage;
+export default TemplateActorPage;
