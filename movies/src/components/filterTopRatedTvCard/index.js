@@ -21,7 +21,7 @@ const formControl =
     backgroundColor: "rgb(255, 255, 255)"
 };
 
-export default function FilterMoviesCard(props) {
+export default function FilterTopRatedTvCard(props) {
 
     const { data, error, isLoading, isError } = useQuery("genres", getGenres);
 
@@ -32,10 +32,10 @@ export default function FilterMoviesCard(props) {
   if (isError) {
     return <h1>{error.message}</h1>;
   }
-  const genres = data.genres;
-  if (genres[0].name !== "All"){
-    genres.unshift({ id: "0", name: "All" });
-  }
+//   const genres = data.genres;
+//   if (genres[0].name !== "All"){
+//     genres.unshift({ id: "0", name: "All" });
+//   }
 
   const handleChange = (e, type, value) => {
     e.preventDefault();
@@ -62,7 +62,7 @@ export default function FilterMoviesCard(props) {
             <CardContent>
                 <Typography variant="h5" component="h1">
                     <SearchIcon fontSize="large" />
-                    Filter the movies.
+                    Filter the shows.
                 </Typography>
                 <TextField
                     sx={{ ...formControl }}
@@ -73,25 +73,7 @@ export default function FilterMoviesCard(props) {
                     value={props.titleFilter}
                     onChange={handleTextChange}
                 />
-                <FormControl sx={{ ...formControl }}>
-                    <InputLabel id="genre-label">Genre</InputLabel>
-                    <Select
-                        labelId="genre-label"
-                        id="genre-select"
-                        defaultValue=""
-                        value={props.genreFilter}
-                        onChange={handleGenreChange}
-                    >
-
-                        {genres.map((genre) => {
-                            return (
-                                <MenuItem key={genre.id} value={genre.id}>
-                                    {genre.name}
-                                </MenuItem>
-                            );
-                        })}
-                    </Select>
-                </FormControl>
+               
             </CardContent>
             <CardMedia
                 sx={{ height: 300 }}
@@ -101,7 +83,7 @@ export default function FilterMoviesCard(props) {
             <CardContent>
                 <Typography variant="h5" component="h1">
                     <SearchIcon fontSize="large" />
-                    Filter the movies.
+                    Filter the tv shows
                     <br />
                 </Typography>
             </CardContent>

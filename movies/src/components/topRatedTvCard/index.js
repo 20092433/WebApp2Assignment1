@@ -16,70 +16,61 @@ import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import img from '../../images/film-poster-placeholder.png'
 
-export default function ActorCard({ actor }) {
+export default function TopRatedTvCard({ topRatedTv, action }) {
     // const { favorites, addToFavorites } = useContext(MoviesContext);
 
-    // if (favorites.find((id) => id === movie.id)) {
-    //     movie.favorite = true;
+    // if (favorites.find((id) => id === topRatedTv.id)) {
+    //      topRatedTv.favorite = true;
     // } else {
-    //     movie.favorite = false
+    //     topRatedTv.favorite = false
     // }
 
     // const handleAddToFavorite = (e) => {
     //     e.preventDefault();
-    //     addToFavorites(movie);
-
+    //     addToFavorites(topRatedTv);
     // };
 
-     
+console.log(topRatedTv)
 
     return (
+        //"this is one card"
+        
         <Card sx={{ maxWidth: 345 }}>
             <CardHeader
                 avatar={
-                    actor.favorite ? (
+                    topRatedTv.title ? (
                         <Avatar sx={{ backgroundColor: 'red' }}>
-                            //<FavoriteIcon />
+                            <FavoriteIcon />
                         </Avatar>
                     ) : null
                 }
-                title={
-                    <Typography variant="h5" component="p">
-                        {actor.name}{" "}
-                    </Typography>
-                }
+
             />
             <CardMedia
                 sx={{ height: 500 }}
                 image={
-                    actor.profile_path
-                        ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
+                    topRatedTv.poster_path
+                        ? `https://image.tmdb.org/t/p/w500/${topRatedTv.poster_path}`
                         : img
                 }
             />
             <CardContent>
                 <Grid container>
                     <Grid item xs={6}>
-                        <Typography variant="h6" component="p">
-                            <CalendarIcon fontSize="small" />
-                            {actor.popularity}
-                        </Typography>
+                       
                     </Grid>
                     <Grid item xs={6}>
-                        <Typography variant="h6" component="p">
-                            <StarRateIcon fontSize="small" />
-                            {"  "} {actor.known_for_department}{" "}
-                        </Typography>
+                       
                     </Grid>
                 </Grid>
             </CardContent>
             <CardActions disableSpacing>
-                {/* {action(actor)} */}
-                <Link to={`/actors/${actor.id}`}>
+                
+               
                     <Button variant="outlined" size="medium" color="primary">
                         More Info ...
                     </Button>
-                </Link>
+               
             </CardActions>
         </Card>
     );

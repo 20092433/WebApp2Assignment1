@@ -12,7 +12,15 @@ import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage';
 import UpcomingMovies from "./pages/upcomingMovies";
 import FamousActorsPage from "./pages/famousActorsPage";
+import ActorDetails from "./components/actorDetails";
+import ActorCard from "./components/actorCard";
+import TemplateTopRatedTvPage from "./components/templateTopRatedTvPage";
+
+
 import SiteHeader from './components/siteHeader'
+import ActorPage from "./pages/actorDetailsPage";
+import TopRatedTvPage from "./pages/topRatedTvPage";
+import TopRatedMoviesPage from "./pages/topRatedMoviesPage";
 
 
 const queryClient = new QueryClient({
@@ -37,8 +45,14 @@ const App = () => {
           <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
           <Route path="/movies/popular" element={ <PopularMoviesPage /> } />
           <Route path="/actors/famous" element={ <FamousActorsPage /> } />
+
+          <Route path="/tvshows/topRated" element={ <TopRatedTvPage /> } />
+          <Route path="/movies/topRated" element={ <TopRatedMoviesPage /> } />
+         
+
           <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
           <Route path="/movies/:id" element={<MoviePage />} />
+          <Route path="/actors/:id" element={<ActorDetails />} />
           <Route path="/" element={<HomePage />} />
           <Route path="*" element={ <Navigate to="/" /> } />
         </Routes>

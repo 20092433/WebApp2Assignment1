@@ -7,9 +7,11 @@ import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate } from "react-router-dom";
 
-const ActorHeader = (props) => {
-  const actor = props.actor;
+const TopRatedTvHeader = (props) => {
+  const topRatedTv = props.topRatedTv;
   const navigate = useNavigate();
+
+  //console.log(top)
 
   return (
     <Paper 
@@ -26,14 +28,7 @@ const ActorHeader = (props) => {
         <ArrowBackIcon color="primary" fontSize="large" />
       </IconButton>
 
-      <Typography variant="h4" component="h3">
-        {actor.name}
-        <a href={actor.homepage}>
-          <HomeIcon color="primary" />
-        </a>
-        <br />
-        <span sx={{ fontSize: "1.5rem" }}>{`   "${actor.tagline}"`} </span>
-      </Typography>
+      
 
       <IconButton aria-label="go forward" onClick={() => navigate(+1) } >
         <ArrowForwardIcon color="primary" fontSize="large" />
@@ -42,4 +37,4 @@ const ActorHeader = (props) => {
   );
 };
 
-export default ActorHeader;
+export default TopRatedTvHeader;

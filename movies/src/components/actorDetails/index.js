@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import MonetizationIcon from "@mui/icons-material/MonetizationOn";
+import StarRate from "@mui/icons-material/StarRate";
+import NavigationIcon from "@mui/icons-material/Navigation";
+import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
+import MovieReviews from "../movieReviews";
+import { getActorTaggedImages } from "../../api/tmdb-api";
 
 
 
@@ -16,66 +23,48 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-//functional react component name ActorDetails is defined which takes an object 'actors'
-//props
-const ActorDetails = ({ actor }) => {  // Don't miss this!
-    //component uses the use state hook to initialize variable openDrawer
-    const [drawerOpen, setDrawerOpen] = useState(false);
 
+
+const ActorDetails = ({ actor }) => {
+    const [taggedImages, setTaggedImages] = useState([]);
     console.log(actor)
+
+    useEffect(() => {
+        const fetchTaggedImages = async () => {
+            try {
+                const images = await getActorTaggedImages(actor.id);
+                setTaggedImages(images);
+            } catch (error) {
+                // Handle error if needed
+            }
+        };
+
+        fetchTaggedImages();
+    }, [actor.id]);
+
+    // If taggedImages is still false, return a loading state or null
+    if (taggedImages === false) {
+        return <p>Loading...</p>; // You can replace this with your loading component or return null
+    }
 
     return (
         <>
             <Typography variant="h5" component="h3">
-                Overview
+                Tagged Photos of {actor.name}
             </Typography>
 
-         //displays the actors name using a material ui typography component with the 
-         //variant h5
-            <Typography variant="h6" component="p">
-                {actor.name}
-            </Typography> 
-
-           
-
-
-//uses a material ui paper component as a container for a list of chip components, each 
-//of them displaying specific details about the actor
-
-    
-    
-
-      <Paper 
-        component="ul" 
-        sx={root}
-      >
-         <Chip
-         label={`Popularity rating: ${actor.popularity}`}
-        />
-        
-        <Chip
-         label={`Date of birth: ${actor.birthday}`}
-        />
-
-         <Chip
-         label={`Birthplace: ${actor.place_of_birth}`}
-        />
-
-         <Chip
-         label={`Best known for: ${actor.known_for_department}`}
-        />
-        </Paper>
-       
-    
-     
-
-      <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-      </Drawer>
-      </>
-  );
+            <div style={root}>
+                {taggedImages.map((image) => (
+                    <img
+                        key={image.id}
+                        src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
+                        alt={image.file_path}
+                        style={chip}
+                    />
+                ))}
+            </div>
+        </>
+    );
 };
 
-
-
-           
 export default ActorDetails;
