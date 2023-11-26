@@ -7,16 +7,27 @@ This respository includes a TMDB react movie application. It is made up of multi
 
 ## API endpoints.
 Discover List of Movies - /movies
+
 Upcoming List of Movies -/movies/upcoming 
+
 Favorite List of Movies - /movies/favorites
+
 Review Form - /reviews/form
+
 Popular List of Movies - /movies/popular
+
 List of Famous Actors - /actors/famous
+
 Top rated List of movies - /movies/topRated
+
 Movies Review page - /reviews/:id
+
 Movie Page - /movies/:id
+
 Actors details Page - /actors/:id
+
 Home Page - /
+
 Navigate to - *
 
 # Routing 
